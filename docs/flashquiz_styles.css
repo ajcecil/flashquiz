@@ -76,7 +76,7 @@ html, body {
     justify-content: flex-start; /* keep everything left-aligned */
     transition: top 0.1s ease;
     z-index: 1001;
-    padding-left: 15px; /* spacing from left edge */
+    padding-left: 100px; /* spacing from left edge */
   }
 
   .header.hidden {
