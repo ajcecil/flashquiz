@@ -66,26 +66,42 @@ html, body {
   /* spanning header */
   .header {
     position: fixed;
-    top:    0;
-    left:   0;
-    right:  0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 100px;
-    background-color:#008600; /* #ADD8E6 */
+    background-color: #008600;
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: top 0.1s ease;    /* animate hiding/showing */
+    justify-content: flex-start; /* keep everything left-aligned */
+    transition: top 0.1s ease;
     z-index: 1001;
-    text-align: left;
+    padding-left: 15px; /* spacing from left edge */
   }
-  .header.hidden{
+
+  .header.hidden {
     top: -100px;
   }
+
+  .header-logo-link {
+    height: 70px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-logo {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+
   .header h1 {
     font-size: 1.8em;
-    color:#ffffff;
-    margin: 0;
+    color: #ffffff;
+    margin: 0 0 0 15px; /* space between logo and text */
+    text-align: left;
   }
+
   .header-logo-link {
     position: absolute;
     left: 15px;
