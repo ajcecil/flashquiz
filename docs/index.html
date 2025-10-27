@@ -19,7 +19,7 @@
         <li class="dropdown">
           <a href="#">Tools ▾</a>
           <ul class="dropdown-menu">
-            <li><a href="www.example.com" target="_blank">Flashcards</a></li>
+            <li><a href="www.google.com" target="_blank">Flashcards</a></li>
             <li><a href="www.example.com" target="_blank">Matching Game</a></li>
           </ul>
         </li>
@@ -38,29 +38,15 @@
           This site will soon host flashcards and other study tools which have not yet been determined.
         </p>
       </section>
+      <section id></section>
+
     </div>
 
-    <!-- tabs.js to wire up the tab buttons -->
-    <script>
-      document.querySelectorAll('.map-tabs .tab-btn')
-        .forEach(btn => {
-          btn.addEventListener('click', () => {
-            // deactivate all
-            document
-              .querySelectorAll('.map-tabs .tab-btn')
-              .forEach(b => b.classList.remove('active'));
-            document
-              .querySelectorAll('.map-tabs .tab-content')
-              .forEach(c => c.classList.remove('active'));
 
-            // activate the one we clicked
-            btn.classList.add('active');
-            document
-              .getElementById(btn.dataset.target)
-              .classList.add('active');
-          });
-        });
-    </script>
+
+
+
+
     <script>
       const header   = document.querySelector('.header');
       const menuBar  = document.querySelector('.menu-bar');

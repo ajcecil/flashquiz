@@ -7,7 +7,7 @@ html, body {
   
   /* full-page background */
   body {
-    background-color: #292929;
+    background-color: #ffffff;
   }
   
   /* fixed left & right sidebars */
@@ -82,7 +82,7 @@ html, body {
   }
   .header h1 {
     font-size: 1.8em;
-    color: #F0F0F0;
+    color: #ffffff;
     margin: 0;
   }
   .header-logo-link {
@@ -96,38 +96,7 @@ html, body {
     width: auto;
     display: block;
   }
-  .method-flow {
-    height: 850px;
-    width: auto;
-    display: block;
-    margin: 0 auto;
-  }
-  .overview-image {
-    float: right;
-    height: 300px;
-    width: auto;
-    margin: 0 0 1em 1em;
-  }
-  .pit-image {
-    float: right;
-    height: auto;
-    width: 400px;
-    margin: 0 0 1em 1em;
-  }
-  .dog-image {
-    height: auto;
-    width: 500px;
-    display: block;
-    margin: 0 auto;
-  }
-  /* map sizing */
-  .my-map {
-    width: calc(100% - 400px);          /* or whatever % you like */
-    height: 70vh;
-    min-height: 400px;
-    margin: 0 auto;      /* centers it in the flex container */
-  }
-  
+
   /* basic section text styling (all white here) */
   .section-text {
     color: #ffffff;
@@ -143,44 +112,6 @@ html, body {
     color: #ffffff;           /* or whatever text color you’re using */
   }
 
-  /* TABS: buttons + content */
-  .map-tabs .tab-buttons {
-    display: flex;
-    justify-content: left;      /* anchor the buttons to the left */
-    gap: 8px;                      /* space between them */
-    
-    width: 100%;                   /* full width of your <section> */
-    padding: 12px 0;               /* vertical padding for the bar */
-    margin-bottom: 16px;           /* space below bar before the maps */
-    
-    background-color: #333333;        /* dark background for the bar */
-    box-sizing: border-box;
-    border-radius: 4px;            /* optional rounded corners */
-  }
-  
-  /* style the buttons themselves so they stand out in the bar */
-  .map-tabs .tab-btn {
-    background: #eeeeee;
-    color: #333333;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .map-tabs .tab-btn.active {
-    background: #ffffff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  }
-  .map-tabs .tab-btn:hover {
-    background: #dddddd;
-  }
-  .map-tabs .tab-content {
-    display: none;
-  }
-  .map-tabs .tab-content.active {
-    display: block;
-  }
 
   /* ─── Menu Bar ───────────────────────── */
   .menu-bar {
@@ -224,7 +155,7 @@ html, body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: #292929;
+    background: #ffffff;
     list-style: none;
     margin: 0;
     padding: 0.5em 0;
@@ -232,75 +163,15 @@ html, body {
     z-index: 2000;
   }
   .dropdown-menu li a {
-    color: #ffffff;
+    color: #9c9c9cff;
     padding: 0.5em 1em;
     white-space: nowrap;
   }
   .dropdown-menu li a:hover {
-    background: #535353;
+    background: #9c9c9cff;
   }
   
   /* Show dropdown on hover */
   .dropdown:hover .dropdown-menu {
     display: block;
-  }
-
-  #om {
-    color: #ffffff
-  }
-  #om h2 {
-    color: #ffffff
-  }
-  #om p {
-    color: #ffffff
-  }
-
-  #ph {
-    color: #ffffff
-  }
-  #ph h2 {
-    color: #ffffff
-  }
-  #ph p {
-    color: #ffffff
-  }
-
-  #bph {
-    color: #ffffff
-  }
-  #bph h2 {
-    color: #ffffff
-  }
-  #bph p {
-    color: #ffffff
-  }
-
-  #samples {
-    color: #ffffff
-  }
-  #samples h2 {
-    color: #ffffff
-  }
-  #samples p {
-    color: #ffffff
-  }
-
-  #phos {
-    color: #ffffff
-  }
-  #phos h2 {
-    color: #ffffff
-  }
-  #phos p {
-    color: #ffffff
-  }
-
-  #potassium {
-    color: #ffffff
-  }
-  #potassium h2 {
-    color: #ffffff
-  }
-  #potassium p {
-    color: #ffffff
   }
