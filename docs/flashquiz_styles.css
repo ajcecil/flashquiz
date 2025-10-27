@@ -15,7 +15,7 @@ html, body {
     position: fixed;
     top: 110px; bottom: 0;
     width: 200px;
-    background-color: #008600;
+    background-color: #fa8500ff;
     padding-top: 80px;
     box-sizing: border-box;
     z-index: 1000;
@@ -32,7 +32,7 @@ html, body {
   /* make sidebar nav links look like buttons */
    .sidebar.left nav a {
        display: block;                  /* full-width blocks */
-       background-color: #006400;       /* green */
+       background-color: #fa8500ff;       /* green */
        color: white;                    /* white text */
        padding: 0.6em 1em;              /* some breathing room */
        margin-bottom: 0.5em;            /* space between buttons */
@@ -44,7 +44,7 @@ html, body {
    }
     
    .sidebar.left nav a:hover {
-       background-color: #046997;       /* lighter on hover */
+       background-color: #008600;       /* lighter on hover */
    }
   
   /* fixed bottom bar */
@@ -52,7 +52,7 @@ html, body {
     position: fixed;
     left: 0; right: 0; bottom: 0;
     height: 60px;
-    background-color: #006400;
+    background-color: #fa8500ff;
     z-index: 1000;
   }
   
@@ -189,7 +189,7 @@ html, body {
     left:   0;
     right:  0;
     height: 50px;    /* whatever your menu height is */
-    background: #006400;
+    background: #fa8500ff;
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 1000;
