@@ -1,0 +1,306 @@
+/* make sure the page fills the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  /* full-page background */
+  body {
+    background-color: #292929;
+  }
+  
+  /* fixed left & right sidebars */
+  .sidebar {
+    position: fixed;
+    top: 110px; bottom: 0;
+    width: 200px;
+    background-color: #008600;
+    padding-top: 80px;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+  .sidebar.left  { left: 0; }
+  
+  /* vertical nav in left sidebar */
+  .sidebar.left nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+  }
+  /* make sidebar nav links look like buttons */
+   .sidebar.left nav a {
+       display: block;                  /* full-width blocks */
+       background-color: #006400;       /* green */
+       color: white;                    /* white text */
+       padding: 0.6em 1em;              /* some breathing room */
+       margin-bottom: 0.5em;            /* space between buttons */
+       border-radius: 0.5em;            /* rounded corners */
+       text-align: center;              /* center the label */
+       text-decoration: none;           /* remove underline */
+       font-weight: bold;
+       transition: background-color .2s;
+   }
+    
+   .sidebar.left nav a:hover {
+       background-color: #046997;       /* lighter on hover */
+   }
+  
+  /* fixed bottom bar */
+  .bottom-bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    height: 60px;
+    background-color: #006400;
+    z-index: 1000;
+  }
+  
+  /* scrolling content region */
+  .content {
+    margin: 150px 50px 60px 50px;   /* sides = sidebars; bottom = footer */
+    padding: 20px;
+    min-height: calc(100vh - 110px - 60px);
+  }
+  
+  /* spanning header */
+  .header {
+    position: fixed;
+    top:    0;
+    left:   0;
+    right:  0;
+    height: 100px;
+    background-color: #505354; /* #ADD8E6 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: top 0.1s ease;    /* animate hiding/showing */
+    z-index: 1001;
+  }
+  .header.hidden{
+    top: -100px;
+  }
+  .header h1 {
+    font-size: 1.8em;
+    color: #F0F0F0;
+    margin: 0;
+  }
+  .header-logo-link {
+    position: absolute;
+    left: 15px;
+    height: 70px;
+    display: block;
+  }
+  .header-logo {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+  .method-flow {
+    height: 850px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .overview-image {
+    float: right;
+    height: 300px;
+    width: auto;
+    margin: 0 0 1em 1em;
+  }
+  .pit-image {
+    float: right;
+    height: auto;
+    width: 400px;
+    margin: 0 0 1em 1em;
+  }
+  .dog-image {
+    height: auto;
+    width: 500px;
+    display: block;
+    margin: 0 auto;
+  }
+  /* map sizing */
+  .my-map {
+    width: calc(100% - 400px);          /* or whatever % you like */
+    height: 70vh;
+    min-height: 400px;
+    margin: 0 auto;      /* centers it in the flex container */
+  }
+  
+  /* basic section text styling (all white here) */
+  .section-text {
+    color: #ffffff;
+  }
+  .section-text h2,
+  .section-text h3,
+  .section-text p {
+    margin-bottom: .75em;
+  }
+  .section-text ul {
+    margin-left: 1.5em;    /* indent */
+    list-style: disc;
+    color: #ffffff;           /* or whatever text color you’re using */
+  }
+
+  /* TABS: buttons + content */
+  .map-tabs .tab-buttons {
+    display: flex;
+    justify-content: left;      /* anchor the buttons to the left */
+    gap: 8px;                      /* space between them */
+    
+    width: 100%;                   /* full width of your <section> */
+    padding: 12px 0;               /* vertical padding for the bar */
+    margin-bottom: 16px;           /* space below bar before the maps */
+    
+    background-color: #333333;        /* dark background for the bar */
+    box-sizing: border-box;
+    border-radius: 4px;            /* optional rounded corners */
+  }
+  
+  /* style the buttons themselves so they stand out in the bar */
+  .map-tabs .tab-btn {
+    background: #eeeeee;
+    color: #333333;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .map-tabs .tab-btn.active {
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .map-tabs .tab-btn:hover {
+    background: #dddddd;
+  }
+  .map-tabs .tab-content {
+    display: none;
+  }
+  .map-tabs .tab-content.active {
+    display: block;
+  }
+
+  /* ─── Menu Bar ───────────────────────── */
+  .menu-bar {
+    position: fixed;
+    top:    0;    /* pin to top when header is hidden */
+    left:   0;
+    right:  0;
+    height: 50px;    /* whatever your menu height is */
+    background: #006400;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+  .menu-bar.initial {
+    top: 100px;
+  }
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+    height: 50px;
+  }
+  .menu > li {
+    position: relative;
+  }
+  .menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 50px;
+    display: block;
+    padding: 0 0.5em;
+  }
+  
+  /* Dropdown container hidden by default */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #292929;
+    list-style: none;
+    margin: 0;
+    padding: 0.5em 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 2000;
+  }
+  .dropdown-menu li a {
+    color: #ffffff;
+    padding: 0.5em 1em;
+    white-space: nowrap;
+  }
+  .dropdown-menu li a:hover {
+    background: #535353;
+  }
+  
+  /* Show dropdown on hover */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  #om {
+    color: #ffffff
+  }
+  #om h2 {
+    color: #ffffff
+  }
+  #om p {
+    color: #ffffff
+  }
+
+  #ph {
+    color: #ffffff
+  }
+  #ph h2 {
+    color: #ffffff
+  }
+  #ph p {
+    color: #ffffff
+  }
+
+  #bph {
+    color: #ffffff
+  }
+  #bph h2 {
+    color: #ffffff
+  }
+  #bph p {
+    color: #ffffff
+  }
+
+  #samples {
+    color: #ffffff
+  }
+  #samples h2 {
+    color: #ffffff
+  }
+  #samples p {
+    color: #ffffff
+  }
+
+  #phos {
+    color: #ffffff
+  }
+  #phos h2 {
+    color: #ffffff
+  }
+  #phos p {
+    color: #ffffff
+  }
+
+  #potassium {
+    color: #ffffff
+  }
+  #potassium h2 {
+    color: #ffffff
+  }
+  #potassium p {
+    color: #ffffff
+  }
