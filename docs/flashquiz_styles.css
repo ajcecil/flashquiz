@@ -76,6 +76,7 @@ html, body {
     justify-content: center;
     transition: top 0.1s ease;    /* animate hiding/showing */
     z-index: 1001;
+    text-align: left;
   }
   .header.hidden{
     top: -100px;
