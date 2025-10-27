@@ -116,7 +116,7 @@ html, body {
 
   /* basic section text styling (all white here) */
   .section-text {
-    color:#ffffff;
+    color:#000000;
   }
   .section-text h2,
   .section-text h3,
@@ -126,7 +126,7 @@ html, body {
   .section-text ul {
     margin-left: 1.5em;    /* indent */
     list-style: disc;
-    color:#ffffff;           /* or whatever text color you’re using */
+    color:#000000;           /* or whatever text color you’re using */
   }
 
 
