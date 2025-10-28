@@ -216,8 +216,8 @@ html, body {
 
   .flashcard .front, .flashcard .back {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 500px;
+    height: 300px;
     backface-visibility: hidden;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
@@ -225,7 +225,7 @@ html, body {
     justify-content: center;
     align-items: center;
     font-size: 1.3em;
-    padding: 15px;
+    padding: 25px;
   }
 
   .flashcard .front {
