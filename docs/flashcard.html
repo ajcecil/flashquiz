@@ -48,23 +48,35 @@
     <div class="flashcard-generator">
         <h2>Flashcard Generator</h2>
 
+        <!-- Display area for the flashcard -->
+        <div class="flashcard-container">
+            <div class="flashcard" id="flashcard">
+            <div class="front" id="flashcardFront">Front of card</div>
+            <div class="back" id="flashcardBack">Back of card</div>
+            </div>
+        </div>
+
+        <!-- Card creation area -->
         <div class="card-creator">
             <input type="text" id="frontText" placeholder="Front text" />
             <input type="text" id="backText" placeholder="Back text" />
             <button id="addCardBtn">Add Card</button>
         </div>
 
+        <!-- Deck controls -->
         <div class="deck-actions">
             <input type="file" id="importFile" accept=".txt" />
             <button id="downloadDeckBtn">Download Deck (.txt)</button>
         </div>
 
+        <!-- Deck list -->
         <div id="deckList" class="deck-list">
             <h3>Current Deck</h3>
             <ul id="cardList"></ul>
         </div>
     </div>
     <!-- === End Flashcard Generator Section === -->
+
 
 
 
@@ -96,7 +108,7 @@
         lastScroll = current;
       });
     </script>
-
+    
     <script>
         const frontInput = document.getElementById("frontText");
         const backInput = document.getElementById("backText");
@@ -105,15 +117,26 @@
         const importFile = document.getElementById("importFile");
         const downloadDeckBtn = document.getElementById("downloadDeckBtn");
 
-        let flashcards = [];
+        const flashcard = document.getElementById("flashcard");
+        const flashcardFront = document.getElementById("flashcardFront");
+        const flashcardBack = document.getElementById("flashcardBack");
 
-        // Add a card manually
+        let flashcards = [];
+        let currentIndex = -1;
+
+        // Flip card on click
+        flashcard.addEventListener("click", () => {
+            flashcard.classList.toggle("flipped");
+        });
+
+        // Add a new flashcard
         addCardBtn.addEventListener("click", () => {
             const front = frontInput.value.trim();
             const back = backInput.value.trim();
             if (front && back) {
             flashcards.push({ front, back });
             updateCardList();
+            showCard(flashcards.length - 1);
             frontInput.value = "";
             backInput.value = "";
             } else {
@@ -121,15 +144,28 @@
             }
         });
 
+        // Show a specific flashcard
+        function showCard(index) {
+            if (index < 0 || index >= flashcards.length) return;
+            currentIndex = index;
+            flashcardFront.textContent = flashcards[index].front;
+            flashcardBack.textContent = flashcards[index].back;
+            flashcard.classList.remove("flipped");
+        }
+
+        // Update list display
         function updateCardList() {
             cardList.innerHTML = "";
             flashcards.forEach((card, index) => {
             const li = document.createElement("li");
             li.textContent = `${index + 1}. ${card.front} → ${card.back}`;
+            li.style.cursor = "pointer";
+            li.addEventListener("click", () => showCard(index));
             cardList.appendChild(li);
             });
         }
 
+        // Import from .txt
         importFile.addEventListener("change", (e) => {
             const file = e.target.files[0];
             if (!file) return;
@@ -143,10 +179,12 @@
                 }
             });
             updateCardList();
+            if (flashcards.length > 0) showCard(0);
             };
             reader.readAsText(file);
         });
 
+        // Download as .txt
         downloadDeckBtn.addEventListener("click", () => {
             if (flashcards.length === 0) {
             alert("No cards to download!");
@@ -162,6 +200,7 @@
             URL.revokeObjectURL(url);
         });
     </script>
+
 
   </body>
 </html>
