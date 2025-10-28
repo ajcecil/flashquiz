@@ -225,6 +225,11 @@ html, body {
     justify-content: center;
     align-items: center;
     font-size: 1.3em;
+    border: 2px solid #004d00;
+    box-sizing: border-box;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .flashcard .front {
