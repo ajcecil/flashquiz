@@ -44,6 +44,27 @@
       </section>
     </div>
 
+    <!-- === Flashcard Generator Section === -->
+    <div class="flashcard-generator">
+        <h2>Flashcard Generator</h2>
+
+        <div class="card-creator">
+            <input type="text" id="frontText" placeholder="Front text" />
+            <input type="text" id="backText" placeholder="Back text" />
+            <button id="addCardBtn">Add Card</button>
+        </div>
+
+        <div class="deck-actions">
+            <input type="file" id="importFile" accept=".txt" />
+            <button id="downloadDeckBtn">Download Deck (.txt)</button>
+        </div>
+
+        <div id="deckList" class="deck-list">
+            <h3>Current Deck</h3>
+            <ul id="cardList"></ul>
+        </div>
+    </div>
+    <!-- === End Flashcard Generator Section === -->
 
 
 
@@ -74,6 +95,73 @@
     
         lastScroll = current;
       });
-    </script>    
+    </script>
+
+    <script>
+        const frontInput = document.getElementById("frontText");
+        const backInput = document.getElementById("backText");
+        const addCardBtn = document.getElementById("addCardBtn");
+        const cardList = document.getElementById("cardList");
+        const importFile = document.getElementById("importFile");
+        const downloadDeckBtn = document.getElementById("downloadDeckBtn");
+
+        let flashcards = [];
+
+        // Add a card manually
+        addCardBtn.addEventListener("click", () => {
+            const front = frontInput.value.trim();
+            const back = backInput.value.trim();
+            if (front && back) {
+            flashcards.push({ front, back });
+            updateCardList();
+            frontInput.value = "";
+            backInput.value = "";
+            } else {
+            alert("Please fill in both fields.");
+            }
+        });
+
+        function updateCardList() {
+            cardList.innerHTML = "";
+            flashcards.forEach((card, index) => {
+            const li = document.createElement("li");
+            li.textContent = `${index + 1}. ${card.front} → ${card.back}`;
+            cardList.appendChild(li);
+            });
+        }
+
+        importFile.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (evt) {
+            const lines = evt.target.result.split("\n");
+            lines.forEach((line) => {
+                const [front, back] = line.split("::");
+                if (front && back) {
+                flashcards.push({ front: front.trim(), back: back.trim() });
+                }
+            });
+            updateCardList();
+            };
+            reader.readAsText(file);
+        });
+
+        downloadDeckBtn.addEventListener("click", () => {
+            if (flashcards.length === 0) {
+            alert("No cards to download!");
+            return;
+            }
+            const content = flashcards.map(c => `${c.front}::${c.back}`).join("\n");
+            const blob = new Blob([content], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "flashcard_deck.txt";
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+    </script>
+
   </body>
 </html>
