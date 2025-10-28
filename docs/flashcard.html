@@ -58,9 +58,10 @@
 
         <!-- Deck controls -->
         <div class="deck-actions">
-            <input type="file" id="importFile" accept=".txt" />
-            <button id="downloadDeckBtn">Download Deck (.txt)</button>
+            <input type="file" id="importFile" accept=".csv" />
+            <button id="downloadDeckBtn">Download Deck (.csv)</button>
         </div>
+
 
         <!-- Deck list -->
         <div id="deckList" class="deck-list">
@@ -161,40 +162,54 @@
             });
         }
 
-        // Import from .txt
-        importFile.addEventListener("change", (e) => {
+            // --- Import from .csv ---
+            importFile.addEventListener("change", (e) => {
             const file = e.target.files[0];
             if (!file) return;
             const reader = new FileReader();
             reader.onload = function (evt) {
-            const lines = evt.target.result.split("\n");
-            lines.forEach((line) => {
-                const [front, back] = line.split("::");
-                if (front && back) {
-                flashcards.push({ front: front.trim(), back: back.trim() });
+                const lines = evt.target.result.split("\n").map(line => line.trim()).filter(l => l);
+                const header = lines[0].split(",").map(h => h.trim().toLowerCase());
+                const frontIndex = header.indexOf("front");
+                const backIndex = header.indexOf("back");
+
+                // Skip header line
+                for (let i = 1; i < lines.length; i++) {
+                const cols = lines[i].split(",");
+                if (cols.length >= 2) {
+                    const front = cols[frontIndex >= 0 ? frontIndex : 0].trim();
+                    const back = cols[backIndex >= 0 ? backIndex : 1].trim();
+                    if (front && back) flashcards.push({ front, back });
                 }
-            });
-            updateCardList();
-            if (flashcards.length > 0) showCard(0);
+                }
+
+                updateCardList();
+                if (flashcards.length > 0) showCard(0);
             };
             reader.readAsText(file);
-        });
+            });
 
-        // Download as .txt
-        downloadDeckBtn.addEventListener("click", () => {
+            // --- Download as .csv ---
+            downloadDeckBtn.addEventListener("click", () => {
             if (flashcards.length === 0) {
-            alert("No cards to download!");
-            return;
+                alert("No cards to download!");
+                return;
             }
-            const content = flashcards.map(c => `${c.front}::${c.back}`).join("\n");
-            const blob = new Blob([content], { type: "text/plain" });
+
+            // Add header row
+            const header = "Front,Back";
+            const rows = flashcards.map(c => `"${c.front.replace(/"/g, '""')}","${c.back.replace(/"/g, '""')}"`);
+            const content = [header, ...rows].join("\n");
+
+            const blob = new Blob([content], { type: "text/csv" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            a.download = "flashcard_deck.txt";
+            a.download = "flashcard_deck.csv";
             a.click();
             URL.revokeObjectURL(url);
-        });
+            });
+
 
         // --- Navigation buttons ---
         nextBtn.addEventListener("click", () => {
