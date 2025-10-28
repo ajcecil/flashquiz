@@ -197,7 +197,7 @@ html, body {
   .flashcard-container {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin: 25px 0;
     perspective: 1000px;
   }
 
@@ -242,7 +242,7 @@ html, body {
   /* Card generator styling */
   .flashcard-generator {
     background: #f9f9f9;
-    padding: 20px;
+    padding: 25px;
     margin: 30px auto;
     border-radius: 10px;
     max-width: 700px;
@@ -251,7 +251,7 @@ html, body {
 
   .card-creator input {
     margin: 5px;
-    padding: 10px;
+    padding: 25px;
     width: 40%;
   }
 
