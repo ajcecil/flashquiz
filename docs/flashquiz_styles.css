@@ -203,44 +203,58 @@ html, body {
 
   .flashcard {
     width: 500px;
-    height: 300px;
+    min-height: 300px; /* start at 300px, can grow */
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.6s;
     cursor: pointer;
+    perspective: 1000px;
   }
 
-  .flashcard.flipped {
-    transform: rotateY(180deg);
-  }
-
-  .flashcard .front, .flashcard .back {
+  /* Shared front/back styles */
+  .flashcard .front,
+  .flashcard .back {
     position: absolute;
-    width: 500px;
-    height: 300px;
+    width: 100%;
+    min-height: 300px;
     backface-visibility: hidden;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.3em;
+    padding: 20px;
+    font-size: clamp(1em, 2vw, 1.3em); /* auto scales text */
     border: 2px solid #004d00;
     box-sizing: border-box;
     text-align: center;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    overflow: hidden;
   }
 
+  /* White front side */
   .flashcard .front {
     background-color: #ffffff;
     color: #333;
   }
 
+  /* Green back side */
   .flashcard .back {
     background-color: #008600;
     color: #fff;
     transform: rotateY(180deg);
+  }
+
+  /* Flip animation */
+  .flashcard.flipped {
+    transform: rotateY(180deg);
+  }
+
+  /* If the text is really long, reduce size further dynamically */
+  .flashcard .front.long-text,
+  .flashcard .back.long-text {
+    font-size: 0.9em;
   }
 
   /* Card generator styling */
